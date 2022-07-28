@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PartialModelpopup.Models.UserDto>
+@{
+    ViewData["Title"] = "Index";
+}
+<a class="btn btn-primary popup" data-url="User/CreateEdit" data-toggle="modal" data-target="#modal-create-edit-user" id="UserModel">Add New User <i class="fa fa-plus"></i></a>
+<partial name="_Modal" />
+@section Scripts{
+    <script src="~/js/user.js" asp-append-version="true"></script>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Created On</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var er in Model)
+        {
+        <tr>
+            <td>@er.Id</td>
+            <td>@er.Name</td>
+            <td>@er.Address</td>
+            <td>@er.IsActive</td>
+
+
+
+
+            <td>
+                <a class="btn btn-primary popup" asp-action="CreateEdit" asp-controller="User" asp-route-id="@er.Id" data-url="User/CreateEdit+Id" data-toggle="modal" data-target="#modal-create-edit-user" id="UserModel">Editr <i class="fa fa-plus"></i></a>
+
+                <a asp-action="CreateEdit" asp-controller="User" asp-route-id="@er.Id">Edit</a>
+                <partial name="_Modal" />
+
+
+                <a asp-action="Delete" asp-controller="Category" asp-route-id="@er.Id">Delete </a>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
